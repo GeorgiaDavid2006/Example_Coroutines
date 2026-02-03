@@ -17,9 +17,17 @@ public class WaypointMover : MonoBehaviour
     float _speed;
 
     // Add the position of all children tagged "Waypoint" to the _waypoints list
+    public Transform wayPoint1;
+    public Transform wayPoint2;
+    public Transform wayPoint3;
+    public Transform wayPoint4;
+    public Transform wayPoint5;
+
     // Also sets the position of the platform to the position of the 1st waypoint.
+
     private void Start()
     {
+        transform.position = wayPoint1.transform.position;
 
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
@@ -40,7 +48,7 @@ public class WaypointMover : MonoBehaviour
         if (_waypoints.Count > 1)
         {
             //TODO: once MoveBetweenWayPoints method exists, uncomment the line below. 
-            //StartCoroutine(MoveBetweenWayPoints());
+            StartCoroutine(MoveBetweenWayPoints());
         }
         
         
@@ -61,7 +69,10 @@ public class WaypointMover : MonoBehaviour
     
     // The solution should only be approximately 15-20 lines of code or less (not including bracket lines and whitespace). 
 
+    IEnumerator MoveBetweenWayPoints()
+    {
 
+    }
  
     
     private void OnDrawGizmos()
