@@ -17,18 +17,11 @@ public class WaypointMover : MonoBehaviour
     float _speed;
 
     // Add the position of all children tagged "Waypoint" to the _waypoints list
-    public Transform wayPoint1;
-    public Transform wayPoint2;
-    public Transform wayPoint3;
-    public Transform wayPoint4;
-    public Transform wayPoint5;
 
     // Also sets the position of the platform to the position of the 1st waypoint.
 
     private void Start()
     {
-        transform.position = wayPoint1.transform.position;
-
         rb = GetComponent<Rigidbody>();
         rb.isKinematic = true;
 
@@ -71,7 +64,12 @@ public class WaypointMover : MonoBehaviour
 
     IEnumerator MoveBetweenWayPoints()
     {
-
+        while (Vector3.Distance(transform.position, _waypoints[1]) > 0.1f)
+        {
+            Vector3 newPosition = Vector3.MoveTowards(transform.position, _waypoints[1], _speed * Time.fixedDeltaTime);
+            rb.MovePosition(newPosition); 
+            yield return null;
+        }
     }
  
     
