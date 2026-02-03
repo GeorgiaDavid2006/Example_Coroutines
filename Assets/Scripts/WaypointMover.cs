@@ -16,6 +16,8 @@ public class WaypointMover : MonoBehaviour
     [SerializeField]
     float _speed;
 
+    int index = 1;
+
     // Add the position of all children tagged "Waypoint" to the _waypoints list
 
     // Also sets the position of the platform to the position of the 1st waypoint.
@@ -64,10 +66,10 @@ public class WaypointMover : MonoBehaviour
 
     IEnumerator MoveBetweenWayPoints()
     {
-        while (Vector3.Distance(transform.position, _waypoints[1]) > 0.1f)
+        while (Vector3.Distance(transform.position, _waypoints[index]) > 0.1f)
         {
-            Vector3 newPosition = Vector3.MoveTowards(transform.position, _waypoints[1], _speed * Time.fixedDeltaTime);
-            rb.MovePosition(newPosition); 
+            Vector3 newPosition = Vector3.MoveTowards(transform.position, _waypoints[index], _speed * Time.fixedDeltaTime);
+            rb.MovePosition(newPosition);
             yield return null;
         }
     }
